@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coba API</title>
+  </head>
+  <body>
+    <h1>Hello World</h1>
+    <button>Send Data, Check Console!</button>
+
+    <script>
+      // digunakan untuk menyeleksi element html dan membuat event click
+      document.querySelector("button").addEventListener("click", function () {
+        // digunakan untuk melakukan http request
+        fetch("http://localhost:5000/users", {
+          // digunakan untuk memilih http method
+          method: "POST",
+          // digunakan untuk memberikan keterangan kepada server, bahwa data yang dikirim adalah berupa json
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // memberi tahu server tentang data yang dikirim
+          body: JSON.stringify({
+            id: "6",
+            nama: "Syafril",
+          }),
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+    </script>
+  </body>
+</html>
